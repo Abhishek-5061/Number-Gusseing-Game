@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Guessing Game</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #383737;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #a6a8ad;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(46, 2, 112, 0.1);
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #ffffff;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Number Guessing Game</h1>
+        <p id="message">Guess the number between 1 and 100</p>
+        <input type="number" id="guessInput" placeholder="Enter your guess">
+        <button id="guessButton">Guess</button>
+        <p id="attempts"></p>
+    </div>
+    <script>
+        let number = Math.floor(Math.random() * 100) + 1;
+        let nguess = 1;
+
+        document.getElementById('guessButton').addEventListener('click', function() {
+            let guess = parseInt(document.getElementById('guessInput').value);
+            let message = '';
+
+            if (guess > number) {
+                message = 'Lower number please';
+            } else if (guess < number) {
+                message = 'Higher number please';
+            } else {
+                message = `****You guessed it in ${nguess} attempts****`;
+            }
+
+            document.getElementById('message').textContent = message;
+            document.getElementById('attempts').textContent = `Number of attempts: ${nguess}`;
+            nguess++;
+            document.getElementById('guessInput').value = '';
+        });
+    </script>
+</body>
+</html>
